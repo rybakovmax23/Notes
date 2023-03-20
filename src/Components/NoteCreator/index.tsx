@@ -1,9 +1,13 @@
 import React from 'react';
 import './style.scss';
 
-export const NoteCreator: React.FC = () => {
+interface NoteCreatorProps {
+  handlerOpenModal: () => void;
+}
+
+export const NoteCreator: React.FC<NoteCreatorProps> = ({handlerOpenModal}) => {
   return (
-    <div className='note-creator-wrapper'>
+    <div className='note-creator-wrapper' onClick={handlerOpenModal}>
       <div className='plus'>+</div>
     </div>
   );
