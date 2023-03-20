@@ -1,0 +1,11 @@
+@import '../../colors.scss';
+
+header {
+  background-color: $orange;
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: 600;
+  padding: 1rem 2rem;
+}

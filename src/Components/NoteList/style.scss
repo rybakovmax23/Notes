@@ -1,0 +1,34 @@
+@import './../../colors.scss';
+
+.form-wrapper {
+  text-align: center;
+  padding: 1.5rem;
+  display: flex;
+  justify-content: center;
+  font-size: 2rem;
+
+  .hash {
+    background-color: $grey;
+    border-top-left-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+    padding: .8rem;
+  }
+
+  &:focus-within {
+    .hash {
+      background-color: $orange;
+    }
+  }
+
+  .input-search {
+    border: 0.1rem solid $grey;
+    border-top-right-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+    min-width: 30rem;
+    padding: 0 0.8rem;
+
+    &:focus {
+      border: 0.1rem solid $orange;
+    }
+  }
+}

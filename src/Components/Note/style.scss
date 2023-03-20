@@ -1,0 +1,59 @@
+@import './../../colors.scss';
+
+.note-wrapper {
+  display: flex;
+  flex-direction: column;
+  border: 0.1rem solid $grey;
+  width: 35rem;
+  height: 35rem;
+  border-radius: 1rem;
+  box-shadow: .2rem 0.2rem 2rem 0.2rem $grey;
+}
+
+.note-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+  background-color: $orange;
+  border-top-left-radius: .9rem;
+  border-top-right-radius: .9rem;
+
+  .note-title {
+    font-size: 2rem;
+  }
+
+  .buttons-wrapper {
+    display: flex;
+    gap: 1.5rem;
+
+    .edit,
+    .delete {
+      font-size: 2rem;
+      cursor: pointer;
+    }
+  }
+}
+
+.note-main {
+  font-size: 1.6rem;
+  background-color: $yellow;
+  border-bottom-left-radius: .9rem;
+  border-bottom-right-radius: .9rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+
+  .note-description {
+    flex: 1 1 auto;
+  }
+
+  .note-tags {
+    display: flex;
+    gap: 1rem;
+    span {
+      font-weight: bold;
+    }
+  }
+}
