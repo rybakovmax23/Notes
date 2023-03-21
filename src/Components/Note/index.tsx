@@ -8,6 +8,7 @@ interface NoteProps {
   description: string;
   tags: string[];
   handlerDeleteNote: (id: string) => MouseEventHandler;
+  handlerEditNote: (id: string) => MouseEventHandler;
 }
 
 export const Note: React.FC<NoteProps> = ({
@@ -16,13 +17,14 @@ export const Note: React.FC<NoteProps> = ({
   description,
   tags,
   handlerDeleteNote,
+  handlerEditNote,
 }) => {
   return (
     <div className='note-wrapper'>
       <div className='note-header'>
         <h3 className='note-title'>{name}</h3>
         <div className='buttons-wrapper'>
-          <div className='edit'>
+          <div className='edit' onClick={handlerEditNote(id)}>
             <AiFillEdit />
           </div>
           <div className='delete' onClick={handlerDeleteNote(id)}>

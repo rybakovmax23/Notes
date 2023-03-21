@@ -7,7 +7,7 @@ import { v4 as uuid } from 'uuid';
 import { getLocalStorage, setLocalStorage } from '../../utils/localStorage';
 import { getTagsFromText } from '../../utils/textOperations';
 
-interface NotesInterface {
+export interface NotesInterface {
   id: string;
   name: string;
   description: string;
@@ -19,6 +19,7 @@ export const NoteList: React.FC = () => {
     getLocalStorage('notes') || []
   );
   const [inputValue, setInputValue] = useState('');
+  const [editNote, setEditNote] = useState<NotesInterface | null>(null);
 
   const handlerOpenModal = () => {
     setOpenModal(true);
@@ -26,6 +27,13 @@ export const NoteList: React.FC = () => {
 
   const handlerCloseModal = () => {
     setOpenModal(false);
+    if (editNote) {
+      setEditNote(null);
+    }
+  };
+  const handlerOpenEditModal = (id: string) => () => {
+    handlerOpenModal();
+    setEditNote(notes.filter((note) => note.id === id)[0]);
   };
 
   const handlerCreateNote = (e: React.SyntheticEvent) => {
@@ -44,6 +52,27 @@ export const NoteList: React.FC = () => {
     handlerCloseModal();
   };
 
+  const handlerEditNote = (e: React.SyntheticEvent) => {
+    e.preventDefault();
+    const target = e.target as typeof e.target & {
+      name: { value: string };
+      description: { value: string };
+    };
+    const newNotes = notes.map((note) => {
+      if (note.id === editNote!.id) {
+        return {
+          id: note.id,
+          name: target.name.value,
+          description: target.description.value,
+        };
+      }
+      return note;
+    });
+    setNotes(newNotes);
+    setLocalStorage('notes', newNotes);
+    handlerCloseModal();
+  };
+
   const handlerDeleteNote = (id: string) => () => {
     const newNotes = notes.filter((note) => note.id !== id);
     setNotes(newNotes);
@@ -51,8 +80,11 @@ export const NoteList: React.FC = () => {
   };
 
   const foundedNotes = notes.filter((note) => {
-    const searchNote = '#' + inputValue;
-    return note.description.includes(searchNote);
+    if (inputValue) {
+      const searchNote = '#' + inputValue;
+      return note.description.includes(searchNote);
+    }
+    return note;
   });
 
   return (
@@ -77,6 +109,7 @@ export const NoteList: React.FC = () => {
               description={note.description}
               tags={getTagsFromText(note.description)}
               handlerDeleteNote={handlerDeleteNote}
+              handlerEditNote={handlerOpenEditModal}
             />
           );
         })}
@@ -85,7 +118,8 @@ export const NoteList: React.FC = () => {
       {isModalOpen && (
         <Modal
           handlerCloseModal={handlerCloseModal}
-          handlerSubmit={handlerCreateNote}
+          handlerSubmit={editNote ? handlerEditNote : handlerCreateNote}
+          note={editNote}
         />
       )}
     </>
