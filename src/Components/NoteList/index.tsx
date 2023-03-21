@@ -18,6 +18,7 @@ export const NoteList: React.FC = () => {
   const [notes, setNotes] = useState<NotesInterface[]>(
     getLocalStorage('notes') || []
   );
+  const [inputValue, setInputValue] = useState('');
 
   const handlerOpenModal = () => {
     setOpenModal(true);
@@ -49,14 +50,25 @@ export const NoteList: React.FC = () => {
     setLocalStorage('notes', newNotes);
   };
 
+  const foundedNotes = notes.filter((note) => {
+    const searchNote = '#' + inputValue;
+    return note.description.includes(searchNote);
+  });
+
   return (
     <>
-      <form className='form-wrapper'>
+      <div className='form-wrapper'>
         <div className='hash'>#</div>
-        <input type='text' className='input-search' placeholder='Search tag' />
-      </form>
+        <input
+          type='text'
+          className='input-search'
+          placeholder='Search tag'
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
+        />
+      </div>
       <div className='note-list-wrapper'>
-        {notes.map((note) => {
+        {foundedNotes.map((note) => {
           return (
             <Note
               key={note.id}
@@ -68,7 +80,6 @@ export const NoteList: React.FC = () => {
             />
           );
         })}
-
         <NoteCreator handlerOpenModal={handlerOpenModal} />
       </div>
       {isModalOpen && (

@@ -7,7 +7,7 @@
   width: 35rem;
   height: 35rem;
   border-radius: 1rem;
-  box-shadow: .2rem 0.2rem 2rem 0.2rem $grey;
+  box-shadow: 0.2rem 0.2rem 2rem 0.2rem $grey;
 }
 
 .note-header {
@@ -16,8 +16,8 @@
   justify-content: space-between;
   padding: 0.5rem 1rem;
   background-color: $orange;
-  border-top-left-radius: .9rem;
-  border-top-right-radius: .9rem;
+  border-top-left-radius: 0.9rem;
+  border-top-right-radius: 0.9rem;
 
   .note-title {
     font-size: 2rem;
@@ -38,8 +38,8 @@
 .note-main {
   font-size: 1.6rem;
   background-color: $yellow;
-  border-bottom-left-radius: .9rem;
-  border-bottom-right-radius: .9rem;
+  border-bottom-left-radius: 0.9rem;
+  border-bottom-right-radius: 0.9rem;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -47,12 +47,18 @@
 
   .note-description {
     flex: 1 1 auto;
+    word-break: break-word;
   }
 
   .note-tags {
     display: flex;
-    gap: 1rem;
-    span {
+    gap: 0.3rem;
+    flex-wrap: wrap;
+    max-height: 6.5rem;
+    overflow: auto;
+    word-break: break-word;
+
+    div {
       font-weight: bold;
     }
   }

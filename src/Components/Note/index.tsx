@@ -34,7 +34,7 @@ export const Note: React.FC<NoteProps> = ({
         <div className='note-description'>{description}</div>
         <div className='note-tags'>
           {tags.map((tag, index) => {
-            return <span key={index}>{tag}</span>;
+            return <div key={index}>{tag}</div>;
           })}
         </div>
       </div>
