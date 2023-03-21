@@ -36,19 +36,46 @@
     padding: 0.8rem;
     border-radius: 0.5rem;
     font-size: 1.6rem;
+    width: 100%;
+  }
+  textarea {
+    position: absolute;
+    display: block;
+    top: 0;
+    background-color: transparent;
   }
 }
 
-.buttons-wrapper{
+.buttons-wrapper {
   display: flex;
   align-items: center;
   justify-content: space-around;
 
-  button{
+  button {
     font-size: 1.6rem;
     padding: 0.8rem 1.5rem;
     background-color: $grey;
     border: 0.1rem solid $dark;
     border-radius: 0.5rem;
+  }
+}
+
+.container-textarea {
+  position: relative;
+  width: 35.8rem;
+  height: 20.8rem;
+}
+
+.highlight {
+  font-size: 1.6rem;
+  padding: 0.9rem;
+  color: transparent;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  height: 20.8rem;
+  overflow: hidden;
+
+  mark {
+    color: transparent;
   }
 }

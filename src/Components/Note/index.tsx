@@ -1,6 +1,7 @@
 import React, { MouseEventHandler } from 'react';
 import { AiFillDelete, AiFillEdit } from 'react-icons/ai';
 import './style.scss';
+import { v4 as uuid } from 'uuid';
 
 interface NoteProps {
   id: string;
@@ -35,8 +36,8 @@ export const Note: React.FC<NoteProps> = ({
       <div className='note-main'>
         <div className='note-description'>{description}</div>
         <div className='note-tags'>
-          {tags.map((tag, index) => {
-            return <div key={index}>{tag}</div>;
+          {tags.map((tag) => {
+            return <div key={uuid()}>{tag}</div>;
           })}
         </div>
       </div>

@@ -48,6 +48,9 @@
   .note-description {
     flex: 1 1 auto;
     word-break: break-word;
+    white-space: break-spaces;
+    height: 22rem;
+    overflow: auto;
   }
 
   .note-tags {

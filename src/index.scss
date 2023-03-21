@@ -42,6 +42,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-weight: normal;
   color: $dark;
+  background-image: linear-gradient($blue 0.1rem, transparent 0.1rem),
+    linear-gradient(90deg, $blue 0.1rem, transparent 0.1rem);
+  background-size: 3em 3em;
   -ms-text-size-adjust: 100%;
   -moz-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
